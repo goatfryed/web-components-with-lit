@@ -1,26 +1,30 @@
-import {SESSIONS} from "../data";
+import {Session, SessionAware, SESSIONS} from "../data";
 import {html, render} from "lit";
-import {repeat} from "lit/directives/repeat"
 
 import "./webTitle";
 import "./currentSession";
+import "./allSessions"
 
 export class LitHtmlApp extends HTMLElement {
 
-    private _currentSessionId: number;
+
+    private _currentSession: Session = SESSIONS[0];
 
     public set currentSessionId(id: number) {
-        this._currentSessionId = id;
+        this.currentSession = SESSIONS[id];
         this.update();
     }
 
-    private get currentSession() {
-        return SESSIONS[this._currentSessionId]
+    private set currentSession(session: Session) {
+        this._currentSession = session;
+        this.update();
     }
 
     constructor() {
         super();
-        this._currentSessionId = parseInt(this.getAttribute("initial-selected") || "0");
+        if (this.hasAttribute("initial-selected")) {
+            this._currentSession = SESSIONS[parseInt(this.getAttribute("initial-selected")!)]
+        }
         this.attachShadow({mode: 'open'});
         this.update();
     }
@@ -30,28 +34,17 @@ export class LitHtmlApp extends HTMLElement {
             <div>
                 <web-title .iteration="${43}">Kasseler Webmontag</web-title>
                 <hr/>
-                <current-session .session="${this.currentSession}"></current-session>
+                <current-session .session="${this._currentSession}"></current-session>
                 <hr/>
-                <div>
-                    Finished
-                    <ol>
-                        ${
-                            repeat(
-                                SESSIONS,
-                                it => it.id,
-                                it => html`
-                                <li @click="${() => this.currentSessionId = it.id}">
-                                    ${it.id === this.currentSession.id ? "👁‍🗨 " : ""}${it.name}
-                                </li>`
-                            )
-                        }
-                        <li>
-                            <input size="32" placeholder="Dein Vorschlag"><button>Jetzt beitragen</button>
-                        </li>
-                    </ol>
-                </div>
+                <all-sessions .currentSession="${this._currentSession}"
+                    @selectSession="${this.onSelectSession}"
+                ></all-sessions>
             </div>
         `
+    }
+
+    public onSelectSession(e: CustomEvent<SessionAware>) {
+        this.currentSession = e.detail.session
     }
 
     private update() {

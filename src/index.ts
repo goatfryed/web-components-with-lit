@@ -1,11 +1,12 @@
 import "./app/litHtmlApp";
+import "./app/litElementApp";
 
 class WebApp extends HTMLElement {
 
     constructor() {
         super();
         this.innerHTML = `
-            <lit-html-app initial-selected="1"></lit-html-app>
+            <lit-element-app initial-selected="1"></lit-element-app>
         `
     }
 }
