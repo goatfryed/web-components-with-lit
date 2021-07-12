@@ -28,7 +28,6 @@ export class webApp extends LitElement {
         if (this.currentSession === null && this.hasAttribute("initial-selected")) {
             this.currentSession = SESSIONS[parseInt(this.getAttribute("initial-selected")!)];
         }
-        const currentSessionId = this.currentSession?.id ?? -1;
 
 
         return html`
@@ -40,17 +39,13 @@ export class webApp extends LitElement {
                 <hr/>
                 <current-session .session="${this.currentSession}"></current-session>
                 <hr/> 
-                <session-schedule .currentSession="${this.currentSession}"
-                    @select-session="${this.onSelectSession}"
-                >
+                <session-schedule @select-session="${this.onSelectSession}">
                     ${
                         repeat(
                             SESSIONS,
                             it => it.id,
                             it => {
-                                const type = it.id < currentSessionId ? "finished"
-                                        : it.id > currentSessionId ? "upcoming"
-                                        : "running";
+                                const type = this.getSessionType(it);
                                 return html`
                                     <scheduled-session .session="${it}" class="${type}"
                                     ></scheduled-session>`;
@@ -60,6 +55,13 @@ export class webApp extends LitElement {
                 </session-schedule>
             </div>
         `
+    }
+
+    private getSessionType(it: Session) {
+        const currentSessionId = this.currentSession?.id ?? -1;
+        return it.id < currentSessionId ? "finished"
+            : it.id > currentSessionId ? "upcoming"
+                : "running";
     }
 
     public onSelectSession(e: CustomEvent<SessionAware>) {
