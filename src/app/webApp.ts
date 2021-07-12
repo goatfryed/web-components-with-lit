@@ -46,7 +46,7 @@ export class webApp extends LitElement {
                     ${
                             repeat(SESSIONS, it => it.id,
                                     it => html`<scheduled-session @session-select="${() => this.currentSession = it}"
-                                class="${this.getSessionType(it)}" slot="${this.getSessionType(it)}"
+                                class="${this.getSessionType(it)}"
                             >
                                 <session-label .session="${it}" />
                             </scheduled-session>`

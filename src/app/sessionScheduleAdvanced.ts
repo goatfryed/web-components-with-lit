@@ -42,7 +42,7 @@ class SessionScheduleAdvanced extends LitElement {
             + currentStart
 
         return html`
-            <slot style="display: none"></slot>
+            <slot style="display: none" @slotchange="${this.onSlotChange}"></slot>
             <slot style="display: none" name="running" @slotchange="${this.onSlotChange}"></slot>
             <div class="columns">
                 <div class="column">
@@ -65,7 +65,8 @@ class SessionScheduleAdvanced extends LitElement {
 
 
     protected onSlotChange(e: any) {
-        (e.target as HTMLSlotElement)
+        (e.target as HTMLSlotElement).assignedElements()
+            .forEach(this.manageSlotting)
 
         this.requestUpdate()
     }
