@@ -21,7 +21,6 @@ export class SessionRequestForm extends LitElement {
 
     private async onSubmit(e: Event) {
         e.preventDefault();
-        if (!this.topicInput.validity.valid || !this.speakerInput.validity.valid) return
 
         const topic = this.topicInput.value.trim();
         const speaker = this.speakerInput.value.trim();
