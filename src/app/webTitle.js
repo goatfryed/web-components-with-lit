@@ -2,12 +2,12 @@ import {css, html, render} from "lit";
 
 export class WebTitle extends HTMLElement {
 
-    public static styles = css`
+    static styles = css`
     `
 
-    private _iteration: number = 0;
+    _iteration = 0;
 
-    public set iteration(iteration: number) {
+    set iteration(iteration) {
         this._iteration = iteration;
         this.render();
     }
@@ -18,7 +18,7 @@ export class WebTitle extends HTMLElement {
         this.render();
     }
 
-    private render() {
+    render() {
         render(
             html`
                 <style>
@@ -32,7 +32,7 @@ export class WebTitle extends HTMLElement {
                     ${this._iteration + 1}. <slot></slot>
                 </h1>
             `,
-            this.shadowRoot!
+            this.shadowRoot
         )
     }
 }
