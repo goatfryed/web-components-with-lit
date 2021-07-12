@@ -3,7 +3,7 @@ import {css, html, LitElement, PropertyValues} from "lit";
 import {Session} from "../data";
 
 import "./scheduledSession"
-import "./sessionInput"
+import "./sessionRequestForm"
 import {classMap} from "lit/directives/class-map";
 
 @customElement("session-schedule")
@@ -53,7 +53,7 @@ class SessionScheduleAdvanced extends LitElement {
                     Upcoming
                     <ol start="${upcomingStart + 1}">
                         <slot name="upcoming" @slotchange="${this.onSlotChange}"></slot>
-                        <session-input />
+                        <session-request-form />
                     </ol>
                 </div>
                 <div class="column ${classMap({"hidden": currentStart <= 0})}">

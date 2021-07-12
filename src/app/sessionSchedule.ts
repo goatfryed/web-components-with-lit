@@ -3,7 +3,7 @@ import {css, html, LitElement} from "lit";
 import {Session} from "../data";
 
 import "./scheduledSession"
-import "./sessionInput"
+import "./sessionRequestForm"
 
 @customElement("session-schedule")
 class SessionSchedule extends LitElement {
@@ -19,7 +19,7 @@ class SessionSchedule extends LitElement {
         return html`
             <ol>
                 <slot><p>nothing here</p></slot>
-                <session-input />
+                <session-request-form />
             </ol>
         `
     }

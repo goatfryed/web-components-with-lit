@@ -1,8 +1,8 @@
 import {customElement, property, query} from "lit/decorators";
 import {css, html, LitElement} from "lit";
 
-@customElement("session-input")
-export class SessionInput extends LitElement {
+@customElement("session-request-form")
+export class SessionRequestForm extends LitElement {
 
     public static styles = css`
       input:not(:focus):not(:placeholder-shown):invalid {
