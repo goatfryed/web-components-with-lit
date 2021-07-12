@@ -64,6 +64,23 @@ class SessionScheduleAdvanced extends LitElement {
     }
 
 
+    protected updated() {
+        for (const [element, observer] of this.observations) {
+            if (!this.isSlottedHere(element)) {
+                observer.disconnect();
+                this.observations.delete(element)
+            }
+        }
+    }
+
+
+    disconnectedCallback() {
+        for (const [element, observer] of this.observations) {
+            observer.disconnect();
+            this.observations.delete(element)
+        }
+    }
+
     protected onSlotChange(e: any) {
         (e.target as HTMLSlotElement).assignedElements()
             .forEach(this.manageSlotting)
@@ -74,6 +91,7 @@ class SessionScheduleAdvanced extends LitElement {
     private observations = new Map<Element, MutationObserver>()
 
     private manageSlotting(slottedElement: Element) {
+        if (this.observations.has(slottedElement)) return;
         slottedElement.slot = SessionScheduleAdvanced.selectSlot(slottedElement)
 
         const observer = new MutationObserver((mutations, observer) => {
@@ -81,12 +99,18 @@ class SessionScheduleAdvanced extends LitElement {
                 if (mutation.type !== "attributes") continue;
                 const target = mutation.target as Element;
 
+                if (!this.isSlottedHere(target)) {
+                    observer.disconnect()
+                    this.observations.delete(slottedElement)
+                }
+
                 if (mutation.attributeName == "class") {
                     target.slot = SessionScheduleAdvanced.selectSlot(target)
                 }
             }
         });
         observer.observe(slottedElement, {attributes: true, attributeFilter: ["class", "slot"]})
+        this.observations.set(slottedElement, observer)
     }
 
     private isSlottedHere(target: Element) {
