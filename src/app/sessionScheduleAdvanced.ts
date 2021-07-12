@@ -46,7 +46,7 @@ class SessionScheduleAdvanced extends LitElement {
             + currentStart
 
         return html`
-            <slot style="display: none" @slotchange="${this.onSlotChange}"></slot>
+            <slot style="display: none"></slot>
             <slot style="display: none" name="running" @slotchange="${this.onSlotChange}"></slot>
             <div class="columns">
                 <div class="column">
@@ -67,35 +67,15 @@ class SessionScheduleAdvanced extends LitElement {
         `
     }
 
-    private observations = new Map<Element, MutationObserver>()
 
     protected onSlotChange(e: any) {
-        (e.target as HTMLSlotElement).assignedElements()
-            .forEach(it => this.manageSlotting(it));
-
-        this.requestUpdate()
+        (e.target as HTMLSlotElement)
     }
 
-    private manageSlotting(slottedElement: Element) {
-        if (this.observations.has(slottedElement)) return;
-        slottedElement.slot = SessionScheduleAdvanced.selectSlot(slottedElement);
-        const observer = new MutationObserver((mutations, observer) => {
-            for (const mutation of mutations) {
-                if (mutation.type !== "attributes") continue;
-                const target = mutation.target as Element;
-                if (!this.isSlottedHere(target)) {
-                    observer.disconnect();
-                    this.observations.delete(target)
-                    return;
-                }
+    private observations = new Map<Element, MutationObserver>()
 
-                if (mutation.attributeName === "class") {
-                    target.slot = SessionScheduleAdvanced.selectSlot(target)
-                }
-            }
-        });
-        observer.observe(slottedElement, {attributes: true, attributeFilter: ["class","slot"]})
-        this.observations.set(slottedElement, observer);
+    private manageSlotting(slottedElement: Element) {
+        slottedElement.slot = SessionScheduleAdvanced.selectSlot(slottedElement)
     }
 
     private isSlottedHere(target: Element) {

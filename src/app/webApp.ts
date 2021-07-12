@@ -3,7 +3,7 @@ import {html, LitElement} from "lit";
 
 import "./webTitle";
 import "./currentSession";
-import "./sessionSchedule"
+import "./sessionScheduleAdvanced"
 import "./sessionLabel"
 import {customElement, property} from "lit/decorators";
 import {repeat} from "lit/directives/repeat";
