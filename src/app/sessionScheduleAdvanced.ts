@@ -67,24 +67,6 @@ class SessionScheduleAdvanced extends LitElement {
         `
     }
 
-
-    updated(_changedProperties: PropertyValues) {
-        for (const [element, observer] of this.observations) {
-            if (!this.isSlottedHere(element)) {
-                observer.disconnect();
-                this.observations.delete(element);
-            }
-        }
-    }
-
-
-    disconnectedCallback() {
-        super.disconnectedCallback();
-        for (const observer of this.observations.values()) {
-            observer.disconnect()
-        }
-    }
-
     private observations = new Map<Element, MutationObserver>()
 
     protected onSlotChange(e: any) {
