@@ -39,9 +39,6 @@ class SessionScheduleAdvanced extends LitElement {
     @query("slot:not([name])")
     public undefinedSessions?: HTMLSlotElement
 
-    @property()
-    private currentSession: Session|null = null
-
     protected render(): unknown {
 
         const currentStart = (!this.finishedSessions ? 0 : this.finishedSessions.assignedElements().length);

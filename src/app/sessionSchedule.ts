@@ -15,9 +15,6 @@ class SessionSchedule extends LitElement {
       }
     `
 
-    @property()
-    private currentSession: Session|null = null
-
     protected render(): unknown {
         return html`
             <ol>
