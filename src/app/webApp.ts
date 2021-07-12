@@ -46,19 +46,17 @@ export class webApp extends LitElement {
                 <hr/> 
                 <session-schedule @select-session="${this.onSelectSession}">
                     ${
-                        repeat(
-                            SESSIONS,
-                            it => it.id,
+                        SESSIONS.map(
                             it => {
                                 const type = this.getSessionType(it);
                                 return html`
-                                    <scheduled-session .session="${it}" class="${type}"
-                                    ></scheduled-session>`;
+                                <scheduled-session .session="${it}" class="${type}"
+                                ></scheduled-session>`;
                             }
                         )
                     }
                 </session-schedule>
-                <span>Build: ${guard([this.currentSession?.id != 2], () => Math.floor(Math.random() * 1000))}</span>
+                <span></span>
             </div>
         `
     }
