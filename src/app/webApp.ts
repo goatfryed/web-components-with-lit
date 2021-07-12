@@ -51,7 +51,6 @@ export class webApp extends LitElement {
                                 const type = this.getSessionType(it);
                                 return html`
                                 <scheduled-session .session="${it}" class="${type}"
-                                   @select-session="${() => this.currentSession = it}"
                                 >
                                     <session-label>${it.topic} - ${it.speaker}</session-label>
                                 </scheduled-session>`;
