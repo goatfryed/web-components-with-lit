@@ -2,9 +2,6 @@ import {css, html, render} from "lit";
 
 export class WebTitle extends HTMLElement {
 
-    static styles = css`
-    `
-
     _iteration = 0;
 
     set iteration(iteration) {
