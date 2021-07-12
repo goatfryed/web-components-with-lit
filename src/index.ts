@@ -8,12 +8,15 @@ class WebApp extends HTMLElement {
         render(
             html`
                 <div>
-                    <web-title .iteration="${EVENT.iteration}">${EVENT.name}</web-title>
+                    <web-title .iteration="${EVENT.iteration}">
+                        ${EVENT.name}
+                        <img src="${EVENT.logoUrl}" alt="logo" slot="logo">
+                    </web-title>
                     <hr/>
                     <current-session></current-session>
                     <hr/>
                     <ol>
-                        ${ SESSIONS.map( it => html`<li>${it.topic} - by ${it.speaker}</li>`)}
+                        ${ SESSIONS.map( it => html`<li><session-label .session="${it}"> </session-label></li>`)}
                     </ol>
                 </div>
             `,

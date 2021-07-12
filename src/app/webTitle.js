@@ -22,6 +22,12 @@ export class WebTitle extends HTMLElement {
         render(
             html`
                 <h1>
+                    <style>
+                        ::slotted(img) {
+                            height: 2em;
+                        }
+                    </style>
+                    <slot name="logo"></slot>
                     ${this._interation + 1}. <slot></slot>
                 </h1>
             `,
