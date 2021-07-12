@@ -1,6 +1,7 @@
 import {customElement, property} from "lit/decorators";
 import {css, html, LitElement} from "lit";
 import {Session, SessionAware} from "../data";
+import {EVENT_SESSION_SELECT} from "../events";
 
 @customElement("scheduled-session")
 class ScheduledSession extends LitElement {
@@ -27,7 +28,7 @@ class ScheduledSession extends LitElement {
     private handleSelect() {
         this.dispatchEvent(
             new CustomEvent<SessionAware>(
-                "select-session"
+                EVENT_SESSION_SELECT
             )
         )
     }
