@@ -1,5 +1,6 @@
 import {customElement, property, query} from "lit/decorators";
 import {css, html, LitElement} from "lit";
+import {EVENT_SESSION_CREATE} from "../events";
 
 @customElement("session-request-form")
 export class SessionRequestForm extends LitElement {
@@ -33,7 +34,7 @@ export class SessionRequestForm extends LitElement {
 
         this.dispatchEvent(
             new CustomEvent(
-                "session-create",
+                EVENT_SESSION_CREATE,
                 {
                     composed: true, bubbles: true,
                     detail: {
