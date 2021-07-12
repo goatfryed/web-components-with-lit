@@ -10,13 +10,13 @@ export class SessionRequestForm extends LitElement {
       }
     `
 
+    @property({type: Boolean})
+    public disabled = false
+
     @query("input[name=topic]")
     private topicInput!: HTMLInputElement
     @query("input[name=speaker]")
     private speakerInput!: HTMLInputElement
-
-    @property({type: Boolean})
-    public disabled = false
 
     private async onSubmit(e: Event) {
         e.preventDefault();
