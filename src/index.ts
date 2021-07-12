@@ -1,6 +1,6 @@
 import "./app/webApp";
 import {html, render} from "lit";
-import {SESSIONS} from "./data";
+import {EVENT, SESSIONS} from "./data";
 
 class WebApp extends HTMLElement {
     constructor() {
@@ -8,7 +8,7 @@ class WebApp extends HTMLElement {
         render(
             html`
                 <div>
-                    <web-title iteration="34">Kasseler Webmontag</web-title>
+                    <web-title .iteration="${EVENT.iteration}">${EVENT.name}</web-title>
                     <hr/>
                     <current-session></current-session>
                     <hr/>
