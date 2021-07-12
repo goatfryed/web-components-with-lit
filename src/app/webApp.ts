@@ -42,18 +42,9 @@ export class webApp extends LitElement {
                 <current-session .session="${this.currentSession}"></current-session>
                 <hr/> 
                 <session-schedule>
-                    ${
-                        SESSIONS.map(
-                            it => {
-                                const type = this.getSessionType(it);
-                                return html`
-                                <scheduled-session .session="${it}" class="${type}"
-                                >
-                                    <session-label>${it.topic} - ${it.speaker}</session-label>
-                                </scheduled-session>`;
-                            }
-                        )
-                    }
+                    <scheduled-session>React Hooks🎣 lifecoding - Nico</scheduled-session>
+                    <scheduled-session>Web components mit lit 🔥 - Omar</scheduled-session>
+                    <scheduled-session>next level html mit jQuery - Internet Explorer</scheduled-session>
                 </session-schedule>
                 <span></span>
             </div>
