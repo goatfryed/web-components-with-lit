@@ -27,11 +27,7 @@ class ScheduledSession extends LitElement {
     private handleSelect() {
         this.dispatchEvent(
             new CustomEvent<SessionAware>(
-                "select-session",
-                {
-                    bubbles: true, composed: true,
-                    detail: { session: this.session }
-                }
+                "select-session"
             )
         )
     }
