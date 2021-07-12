@@ -26,19 +26,12 @@ export class SessionRequestForm extends LitElement {
         const topic = this.topicInput.value.trim();
         const speaker = this.speakerInput.value.trim();
 
-        this.disabled = true
-        let resolve;
-        const resolved = new Promise(
-            _resolve => resolve = _resolve
-        )
-
         this.dispatchEvent(
             new CustomEvent(
                 EVENT_SESSION_CREATE,
                 {
                     composed: true, bubbles: true,
                     detail: {
-                        resolve,
                         session: {
                             topic,
                             speaker
@@ -48,8 +41,6 @@ export class SessionRequestForm extends LitElement {
             )
         )
 
-        await resolved
-        this.disabled = false
         this.topicInput.value = ""
 
     }
