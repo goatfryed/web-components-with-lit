@@ -8,6 +8,7 @@ import "./sessionLabel"
 import {customElement, property} from "lit/decorators";
 import {repeat} from "lit/directives/repeat";
 import {guard} from "lit/directives/guard";
+import {EVENT_SESSION_CREATE} from "../events";
 
 
 @customElement("web-app")
@@ -26,7 +27,7 @@ export class webApp extends LitElement {
 
     constructor() {
         super();
-        this.addEventListener("session-create", this.onSessionCreate as EventListener)
+        this.addEventListener(EVENT_SESSION_CREATE, this.onSessionCreate as EventListener)
     }
 
     protected render() {
@@ -39,12 +40,15 @@ export class webApp extends LitElement {
             <div>
                 <h1>35. Kasseler Webmontag</h1>
                 <hr/>
-                <current-session></current-session>
+                <current-session .session="${this.currentSession}" />
                 <hr/> 
-                <session-schedule>
-                    <scheduled-session>React Hooks🎣 lifecoding - Nico</scheduled-session>
-                    <scheduled-session>Web components mit lit 🔥 - Omar</scheduled-session>
-                    <scheduled-session>next level html mit jQuery - Internet Explorer</scheduled-session>
+                <session-schedule>${
+                    SESSIONS.map( it => html`
+                        <scheduled-session>
+                            <session-label .session="${it}" />
+                        </scheduled-session>
+                    `)
+                }
                 </session-schedule>
                 <span></span>
             </div>
@@ -67,7 +71,7 @@ export class webApp extends LitElement {
             () => {
                     this.currentSession = {
                     ...e.detail.session,
-                    id: -1
+                    id: 99
                 }
                 e.detail.resolve && e.detail.resolve()
             }, 500
