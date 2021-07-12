@@ -75,6 +75,18 @@ class SessionScheduleAdvanced extends LitElement {
 
     private manageSlotting(slottedElement: Element) {
         slottedElement.slot = SessionScheduleAdvanced.selectSlot(slottedElement)
+
+        const observer = new MutationObserver((mutations, observer) => {
+            for (const mutation of mutations) {
+                if (mutation.type !== "attributes") continue;
+                const target = mutation.target as Element;
+
+                if (mutation.attributeName == "class") {
+                    target.slot = SessionScheduleAdvanced.selectSlot(target)
+                }
+            }
+        });
+        observer.observe(slottedElement, {attributes: true, attributeFilter: ["class", "slot"]})
     }
 
     private isSlottedHere(target: Element) {
