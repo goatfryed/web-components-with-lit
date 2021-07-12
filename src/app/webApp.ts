@@ -40,17 +40,18 @@ export class webApp extends LitElement {
             <div>
                 <h1>35. Kasseler Webmontag</h1>
                 <hr/>
-                <current-session .session="${this.currentSession}" />
-                <hr/> 
-                <session-schedule>${
-                    SESSIONS.map( it => html`
-                        <scheduled-session>
-                            <session-label .session="${it}" />
-                        </scheduled-session>
-                    `)
-                }
+                <current-session .session="${this.currentSession}"></current-session>
+                <hr/>
+                <session-schedule>
+                    ${
+                            repeat(SESSIONS, it => it.id,
+                                    it => html`<scheduled-session @session-select="${() => this.currentSession = it}">
+                                <session-label .session="${it}" />
+                            </scheduled-session>`
+                            )
+                    }
                 </session-schedule>
-                <span></span>
+                <span>Lucky number: ${ guard([this.currentSessionId === 2], () => Math.random() * 100)}</span>
             </div>
         `
     }
