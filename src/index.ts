@@ -5,7 +5,7 @@ class WebApp extends HTMLElement {
         super();
         this.innerHTML = `
             <div>
-                <h1>35. Kasseler Webmontag</h1>
+                <web-title iteration="34">Kasseler Webmontag</web-title>
                 <hr/>
                 <current-session></current-session>
                 <hr/>
