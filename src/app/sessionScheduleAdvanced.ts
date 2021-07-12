@@ -66,6 +66,8 @@ class SessionScheduleAdvanced extends LitElement {
 
     protected onSlotChange(e: any) {
         (e.target as HTMLSlotElement)
+
+        this.requestUpdate()
     }
 
     private observations = new Map<Element, MutationObserver>()
