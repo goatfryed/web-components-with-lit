@@ -10,12 +10,8 @@ import {classMap} from "lit/directives/class-map";
 class SessionScheduleAdvanced extends LitElement {
 
     public static styles = css`
-      ::slotted(* li)::before {
-        background: red;
-        content: " ✔";
-      }
       
-      .hidden, .hidden + hr {
+      .hidden {
         display: none;
       }
       
@@ -57,11 +53,11 @@ class SessionScheduleAdvanced extends LitElement {
                     </ol>
                 </div>
                 <div class="column ${classMap({"hidden": currentStart <= 0})}">
-                        Finished
-                        <ol>
-                            <slot name="finished" @slotchange="${this.onSlotChange}"><p>nothing here</p></slot>
-                        </ol>
-                    </div>
+                    Finished
+                    <ol>
+                        <slot name="finished" @slotchange="${this.onSlotChange}"><p>nothing here</p></slot>
+                    </ol>
+                </div>
                 </div>
             </div>
         `
