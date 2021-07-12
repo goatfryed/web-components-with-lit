@@ -37,9 +37,8 @@ export class webApp extends LitElement {
 
         return html`
             <div>
-                <web-title .iteration="${EVENT.iteration}">
+                <web-title iteration="${EVENT.iteration}">
                     ${EVENT.name}
-                    <img src="${EVENT.logoUrl}" slot="logo" alt="logo of ${EVENT.name}">
                 </web-title>
                 <hr/>
                 <current-session .session="${this.currentSession}"></current-session>

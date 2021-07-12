@@ -1,4 +1,4 @@
-import {css, html, render} from "lit";
+import {html, render} from "lit";
 
 export class WebTitle extends HTMLElement {
 
@@ -18,14 +18,7 @@ export class WebTitle extends HTMLElement {
     render() {
         render(
             html`
-                <style>
-                    ::slotted([slot=logo]) {
-                        height: 2em;
-                        width: 2em;
-                    }
-                </style>
                 <h1>
-                    <slot name="logo"></slot>
                     ${this._iteration + 1}. <slot></slot>
                 </h1>
             `,
