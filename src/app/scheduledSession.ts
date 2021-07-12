@@ -20,7 +20,7 @@ class ScheduledSession extends LitElement {
     protected render() {
         return html`
             <li @click="${this.handleSelect}">
-                <session-label .session="${this.session}" />
+                <slot></slot>
             </li>
         `
     }

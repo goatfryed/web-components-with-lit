@@ -52,7 +52,9 @@ export class webApp extends LitElement {
                                 return html`
                                 <scheduled-session .session="${it}" class="${type}"
                                    @select-session="${() => this.currentSession = it}"
-                                ></scheduled-session>`;
+                                >
+                                    <session-label>${it.topic} - ${it.speaker}</session-label>
+                                </scheduled-session>`;
                             }
                         )
                     }
