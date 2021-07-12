@@ -44,13 +44,14 @@ export class webApp extends LitElement {
                 <hr/>
                 <current-session .session="${this.currentSession}"></current-session>
                 <hr/> 
-                <session-schedule @select-session="${this.onSelectSession}">
+                <session-schedule>
                     ${
                         SESSIONS.map(
                             it => {
                                 const type = this.getSessionType(it);
                                 return html`
                                 <scheduled-session .session="${it}" class="${type}"
+                                   @select-session="${() => this.currentSession = it}"
                                 ></scheduled-session>`;
                             }
                         )
