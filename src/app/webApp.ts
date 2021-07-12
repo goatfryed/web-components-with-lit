@@ -81,7 +81,7 @@ export class webApp extends LitElement {
                     ...e.detail.session,
                     id: -1
                 }
-                e.detail.resolve()
+                e.detail.resolve && e.detail.resolve()
             }, 500
         )
     }
