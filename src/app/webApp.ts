@@ -37,8 +37,8 @@ export class webApp extends LitElement {
 
         return html`
             <div>
-                <web-title iteration="${EVENT.iteration}">
-                    ${EVENT.name}
+                <web-title iteration="34">
+                    Kasseler Webmontag
                 </web-title>
                 <hr/>
                 <current-session .session="${this.currentSession}"></current-session>
