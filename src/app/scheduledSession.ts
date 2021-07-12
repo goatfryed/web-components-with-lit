@@ -19,17 +19,12 @@ class ScheduledSession extends LitElement {
 
     protected render() {
         return html`
-            <li @click="${this.handleSelect}">
+            <li>
                 <slot></slot>
             </li>
         `
     }
 
     private handleSelect() {
-        this.dispatchEvent(
-            new CustomEvent<SessionAware>(
-                EVENT_SESSION_SELECT
-            )
-        )
     }
 }
