@@ -39,7 +39,7 @@ export class webApp extends LitElement {
             <div>
                 <h1>35. Kasseler Webmontag</h1>
                 <hr/>
-                <current-session .session="${this.currentSession}"></current-session>
+                <current-session></current-session>
                 <hr/> 
                 <session-schedule>
                     <scheduled-session>React Hooks🎣 lifecoding - Nico</scheduled-session>
