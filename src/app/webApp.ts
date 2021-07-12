@@ -37,9 +37,7 @@ export class webApp extends LitElement {
 
         return html`
             <div>
-                <web-title iteration="34">
-                    Kasseler Webmontag
-                </web-title>
+                <h1>35. Kasseler Webmontag</h1>
                 <hr/>
                 <current-session .session="${this.currentSession}"></current-session>
                 <hr/> 
