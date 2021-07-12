@@ -7,6 +7,7 @@ import "./sessionSchedule"
 import "./sessionLabel"
 import {customElement, property} from "lit/decorators";
 import {repeat} from "lit/directives/repeat";
+import {guard} from "lit/directives/guard";
 
 
 @customElement("web-app")
@@ -53,6 +54,7 @@ export class webApp extends LitElement {
                         )
                     }
                 </session-schedule>
+                <span>Build: ${guard([this.currentSession?.id == 2], () => Math.floor(Math.random() * 1000))}</span>
             </div>
         `
     }
