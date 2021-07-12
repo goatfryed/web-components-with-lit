@@ -1,6 +1,9 @@
-import {html, render} from "lit";
+import {css, html, render} from "lit";
 
 export class WebTitle extends HTMLElement {
+
+    public static styles = css`
+    `
 
     private _iteration: number = 0;
 
@@ -18,7 +21,16 @@ export class WebTitle extends HTMLElement {
     private render() {
         render(
             html`
-                <h1>${this._iteration + 1}. <slot></slot></h1>
+                <style>
+                    ::slotted([slot=logo]) {
+                        height: 2em;
+                        width: 2em;
+                    }
+                </style>
+                <h1>
+                    <slot name="logo"></slot>
+                    ${this._iteration + 1}. <slot></slot>
+                </h1>
             `,
             this.shadowRoot!
         )

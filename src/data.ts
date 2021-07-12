@@ -2,21 +2,36 @@
 
 export interface Session {
     id: number,
-    name: string
+    topic: string,
+    speaker: string
+}
+
+export const EVENT = {
+    iteration: 34,
+    name: "Kasseler Webmontag",
+    logoUrl: "http://www.webmontag-kassel.de/dist/img/webmontag-kassel-logo.png"
 }
 
 export const SESSIONS: Session[] = ([
     {
-        name: "React Hooks life coding - Nico"
+        topic: "React Hooks🎣 lifecoding",
+        speaker: "Nico",
     },
     {
-        name: "Web components mit lit 🔥 - Omar"
+        topic: "Web components mit lit 🔥",
+        speaker: "Omar",
     },
     {
-        name: "next level html mit jQuery - Internet Explorer"
+        topic: "next level html mit jQuery",
+        speaker: "Internet Explorer",
     }
-] as Omit<Session, "id">[]).map((session, id) => ({id, ...session}))
+]).map((session, id) => ({id, ...session}))
 
 export interface SessionAware {
     session: Session
 }
+
+export type SessionCreateDetail = SessionAware & {
+    resolve: () => {}
+}
+export type SessionCreateEvent = CustomEvent<SessionCreateDetail>

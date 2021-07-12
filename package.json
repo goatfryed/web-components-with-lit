@@ -21,5 +21,6 @@
   "keywords": [
     "typescript",
     "javascript"
-  ]
+  ],
+  "browserslist": [ "last 1 Chrome version"]
 }
