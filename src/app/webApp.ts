@@ -20,6 +20,10 @@ export class webApp extends LitElement {
         this.currentSession = SESSIONS[id];
     }
 
+    public get currentSessionId() {
+        return this.currentSession?.id ?? -1
+    }
+
     constructor() {
         super();
         this.addEventListener("session-create", this.onSessionCreate as EventListener)
@@ -54,7 +58,7 @@ export class webApp extends LitElement {
                         )
                     }
                 </session-schedule>
-                <span>Build: ${guard([this.currentSession?.id == 2], () => Math.floor(Math.random() * 1000))}</span>
+                <span>Build: ${guard([this.currentSession?.id != 2], () => Math.floor(Math.random() * 1000))}</span>
             </div>
         `
     }
