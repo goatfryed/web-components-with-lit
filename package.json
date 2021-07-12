@@ -1,5 +1,6 @@
 {
   "name": "web-components-with-lit",
+  "author": "Omar Sood",
   "version": "v0.0.1",
   "description": "Typescript lit web components example",
   "main": "src/index.html",
